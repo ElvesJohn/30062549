@@ -29,7 +29,7 @@ data['year'] = pd.DatetimeIndex(data['Month']).year
 data['month_real'] = pd.DatetimeIndex(data['Month']).month
 data['region'] = data['LSOA name'].str.split().str.get(0)
 data.reset_index(inplace = True)
-data.drop(['index','Unnamed: 0','Falls within','Reported by','Last outcome category','latitude','longitude','Crime ID','Context','Month','LSOA code','LSOA name'], axis = 1, inplace = True)
+data.drop(['index','Unnamed: 0','Falls within','Reported by','Last outcome category','Crime ID','Context','Month','LSOA code','LSOA name'], axis = 1, inplace = True)
 data = data.rename(columns={'Latitude': 'lat', 'Longitude':'lon'})
 st.sidebar.header('The crime map by month')
 month  = st.sidebar.number_input('Month', 1, 9)

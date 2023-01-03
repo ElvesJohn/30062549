@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import statsmodels as sm
+import statsmodels.api as sm
 import plotly.express as px
 import seaborn as sns
 #from wordcloud import WordCloud, STOPWORDS

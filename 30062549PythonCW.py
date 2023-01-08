@@ -10,7 +10,7 @@ import os
 st.title('Analysis of Crime Data in South Wales, UK')
 st.markdown('For period Jan - Sep 2022')
 st.sidebar.title('Analysis Options')
-st.sidebar.markdown('Please follow the instructions below to access the three analysis sections.')
+st.sidebar.markdown('Please follow the instructions below to access the four analysis sections.')
 
 path = os.path.dirname(__file__)
 data_url =  os.path.join(path, 'south-wales-street.csv')  
@@ -109,18 +109,18 @@ if len(choice) >0:
     for search_term in choice:
         location_crime(data,'region', search_term, 'Crime type')
 
-#Time sereis and regression analysis
+#Regression analysis
 grouped_df = data.groupby('month_real')['lon'].size().reset_index(name='Counts')
 grouped_df = grouped_df.rename(columns={'month_real': 'Month'})
 
-st.sidebar.header('Time series and regression analysis')
+st.sidebar.header('Regression analysis')
 if not st.sidebar.checkbox('Close', True, key = '31'):
     #st.markdown('### Time series plot of total crime counts')
     #fig_timeseries = px.histogram(data, x = 'month_real', y = 'lon', histfunc='count')
     #st.plotly_chart(fig_timeseries)
     plt.figure(figsize=(9,9))
     sns.lmplot(x = 'Month', y = 'Counts', data = grouped_df)
-    Title2 = 'Time series plot of total crime counts by month' 
+    Title2 = 'Plot of total crime counts by month' 
     plt.title(Title2, fontsize=12)
     st.pyplot(plt)
     

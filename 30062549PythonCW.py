@@ -46,6 +46,8 @@ grouped_crime = data.groupby('Crime type')['lon'].size().reset_index(name='Count
 
 #Summary plots
 st.sidebar.header('Summary analysis of the data sets')
+st.sidebar.markdown('This analysis option gives a high level overview of crime distributions by month, region and crime types. Uncheck the \'Close\' button below to display plots.')
+
 if not st.sidebar.checkbox('Close', True, key = '01'):
     plt.figure()
     fig1, ax = plt.subplots(1, 2, figsize = (12,6))
@@ -70,6 +72,8 @@ if not st.sidebar.checkbox('Close', True, key = '01'):
 
 #Crime map by month
 st.sidebar.header('The crime map by month')
+st.sidebar.markdown('This analysis option plots the geographical distribution of crimes in the South Wales area by month.')
+
 month  = st.sidebar.number_input('Select month', 1, 9)
 map_data_num_crime = data.query('month_real == @month')['lon'].count()
 
@@ -83,6 +87,7 @@ if not st.sidebar.checkbox('Close', True, key = '1'):
 
 #top crime types by region
 st.sidebar.header('Top crime types by regrion')
+st.sidebar.markdown('This analysis option shows the ranking of crime types in terms of crime counts in different regions.')
 
 choice = st.sidebar.multiselect('Select region(s)', ('Bridgend', 'Caerphilly', 'Cardiff', 'Carmarthenshire',
        'Merthyr', 'Monmouthshire', 'Neath', 'Newport', 'Powys',
@@ -114,6 +119,8 @@ grouped_df = data.groupby('month_real')['lon'].size().reset_index(name='Counts')
 grouped_df = grouped_df.rename(columns={'month_real': 'Month'})
 
 st.sidebar.header('Regression analysis')
+st.sidebar.markdown('This option shows the time series plot of crime counts by month, and the fitted linear regression line and its confidence intervals.')
+
 if not st.sidebar.checkbox('Close', True, key = '31'):
     #st.markdown('### Time series plot of total crime counts')
     #fig_timeseries = px.histogram(data, x = 'month_real', y = 'lon', histfunc='count')
